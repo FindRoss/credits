@@ -3,29 +3,62 @@
 	"version": 3,
 	"settings": {
 		"appearanceTools": true,
-		"layout": { "contentSize": "720px", "wideSize": "1100px" },
+		"layout": { "contentSize": "720px", "wideSize": "1200px" },
 		"color": {
 			"palette": [
-				{ "slug": "background", "name": "Background", "color": "#ffffff" },
-				{ "slug": "foreground", "name": "Foreground", "color": "#111111" },
-				{ "slug": "primary", "name": "Primary", "color": "#0b5fff" },
-				{ "slug": "secondary", "name": "Secondary", "color": "#1f2a44" },
-				{ "slug": "accent", "name": "Accent", "color": "#f5a623" }
+				{ "slug": "ink", "name": "Ink", "color": "#14262C" },
+				{ "slug": "deep", "name": "Deep teal", "color": "#0B3C49" },
+				{ "slug": "teal", "name": "Teal", "color": "#17616F" },
+				{ "slug": "cream", "name": "Cream", "color": "#F6F4EE" },
+				{ "slug": "white", "name": "White", "color": "#FFFFFF" },
+				{ "slug": "accent", "name": "Accent", "color": "#F2A541" },				{ "slug": "mist", "name": "Mist", "color": "#D9E8E8" },
+				{ "slug": "mist-soft", "name": "Mist soft", "color": "#BFD8D5" },
+				{ "slug": "line", "name": "Line", "color": "#D5E0E0" },
+				{ "slug": "line-soft", "name": "Line soft", "color": "#EEF3F3" },
+				{ "slug": "field-line", "name": "Field line", "color": "#B9C9C9" },
+				{ "slug": "track", "name": "Track", "color": "#DDE6E6" },
+				{ "slug": "muted", "name": "Muted text", "color": "#3E4F55" },
+				{ "slug": "muted-soft", "name": "Muted text soft", "color": "#5A6B70" },
+				{ "slug": "sand", "name": "Sand", "color": "#FFF8EC" },
+				{ "slug": "sand-line", "name": "Sand line", "color": "#EFD9B0" },
+				{ "slug": "sand-text", "name": "Sand text", "color": "#8A5A0B" },
+				{ "slug": "warn-bg", "name": "Warning background", "color": "#FFF3DF" },
+				{ "slug": "warn-line", "name": "Warning line", "color": "#E9C98F" },
+				{ "slug": "warn-text", "name": "Warning text", "color": "#5C3A06" },
+				{ "slug": "status-ok", "name": "Status: allowed", "color": "#2E7D5B" },
+				{ "slug": "status-caution", "name": "Status: conditions", "color": "#C98A1B" },
+				{ "slug": "status-stop", "name": "Status: not allowed", "color": "#8A3B32" }
 			]
 		},
 		"typography": {
 			"fontFamilies": [
-				{ "slug": "body", "name": "Body", "fontFamily": "system-ui, -apple-system, 'Segoe UI', sans-serif" },
-				{ "slug": "heading", "name": "Heading", "fontFamily": "system-ui, -apple-system, 'Segoe UI', sans-serif" }
+				{
+					"slug": "body",
+					"name": "Inter",
+					"fontFamily": "'Inter', Arial, sans-serif",
+					"fontFace": [
+						{
+							"fontFamily": "Inter",
+							"fontStyle": "normal",
+							"fontWeight": "100 900",
+							"fontDisplay": "swap",
+							"src": [ "file:./assets/fonts/inter-latin.woff2" ]
+						}
+					]
+				},
+				{ "slug": "heading", "name": "Space Grotesk", "fontFamily": "'Space Grotesk', Arial, sans-serif" }
 			]
 		}
 	},
 	"styles": {
-		"color": { "background": "var(--wp--preset--color--background)", "text": "var(--wp--preset--color--foreground)" },
+		"color": { "background": "var(--wp--preset--color--cream)", "text": "var(--wp--preset--color--ink)" },
 		"typography": { "fontFamily": "var(--wp--preset--font-family--body)" },
 		"elements": {
 			"heading": { "typography": { "fontFamily": "var(--wp--preset--font-family--heading)" } },
-			"link": { "color": { "text": "var(--wp--preset--color--primary)" } }
+			"link": {
+				"color": { "text": "var(--wp--preset--color--teal)" },
+				":hover": { "color": { "text": "var(--wp--preset--color--deep)" } }
+			}
 		}
 	}
 }

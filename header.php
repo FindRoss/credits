@@ -10,12 +10,17 @@
 <?php wp_body_open(); ?>
 
 <header class="site-header">
-	<div class="site-branding">
-		<?php if ( has_custom_logo() ) : the_custom_logo(); else : ?>
-			<a href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php bloginfo( 'name' ); ?></a>
-		<?php endif; ?>
+	<div class="container site-header__inner">
+		<?php credits_logo(); ?>
+		<nav class="site-nav" aria-label="<?php esc_attr_e( 'Main', 'credits' ); ?>">
+			<?php
+			wp_nav_menu( [
+				'theme_location' => 'primary',
+				'container'      => false,
+				'fallback_cb'    => 'credits_primary_menu_fallback',
+			] );
+			?>
+			<a class="btn btn--sm" href="<?php echo esc_url( home_url( '/#check' ) ); ?>"><?php esc_html_e( 'Start free check', 'credits' ); ?></a>
+		</nav>
 	</div>
-	<nav class="site-nav" aria-label="<?php esc_attr_e( 'Primary', 'credits' ); ?>">
-		<?php wp_nav_menu( [ 'theme_location' => 'primary', 'container' => false, 'fallback_cb' => false ] ); ?>
-	</nav>
 </header>

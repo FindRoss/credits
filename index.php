@@ -2,7 +2,7 @@
 defined( 'ABSPATH' ) || exit;
 get_header();
 ?>
-<main class="site-main">
+<main class="container site-main">
 	<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 		<article <?php post_class(); ?>>
 			<?php if ( ! is_singular() ) : ?>

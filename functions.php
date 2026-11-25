@@ -36,6 +36,62 @@ add_action( 'wp_enqueue_scripts', function () {
 		'credits-style',
 		get_template_directory_uri() . '/style.css',
 		[],
-		wp_get_theme( 'credits' )->get( 'Version' )
+		// File mtime busts the browser cache whenever style.css changes.
+		filemtime( get_template_directory() . '/style.css' )
 	);
 } );
+
+/**
+ * Site logo: the uploaded custom logo if set, otherwise the site name as text.
+ * A name of "CounselorCredits" renders the second word in the accent color.
+ */
+function credits_logo() {
+	if ( has_custom_logo() ) {
+		the_custom_logo();
+		return;
+	}
+
+	// Tolerate stray whitespace, any capitalization, and a space between the words:
+	// "Counselor Credits " -> Counselor<span>Credits</span>.
+	$name = trim( get_bloginfo( 'name' ) );
+	if ( preg_match( '/^(.+?)\s*(Credits)$/i', $name, $m ) ) {
+		$label = esc_html( $m[1] ) . '<span>' . esc_html( $m[2] ) . '</span>';
+	} else {
+		$label = esc_html( $name );
+	}
+
+	printf(
+		'<a class="site-logo" href="%s">%s</a>',
+		esc_url( home_url( '/' ) ),
+		$label // Escaped above.
+	);
+}
+
+/**
+ * Menu fallbacks, shown until a menu is assigned to the location in Appearance > Menus.
+ */
+function credits_primary_menu_fallback() {
+	$items = [
+		'#situations' => __( 'Your situation', 'credits' ),
+		'#states'     => __( 'State rules', 'credits' ),
+		'#partner'    => __( 'Courses', 'credits' ),
+		'#how'        => __( 'How it works', 'credits' ),
+	];
+	echo '<ul>';
+	foreach ( $items as $anchor => $label ) {
+		printf( '<li><a href="%s">%s</a></li>', esc_url( home_url( '/' . $anchor ) ), esc_html( $label ) );
+	}
+	echo '</ul>';
+}
+
+function credits_footer_menu_fallback() {
+	$items = [
+		'#states'  => __( 'All states', 'credits' ),
+		'#partner' => __( 'Courses', 'credits' ),
+	];
+	echo '<ul>';
+	foreach ( $items as $anchor => $label ) {
+		printf( '<li><a href="%s">%s</a></li>', esc_url( home_url( '/' . $anchor ) ), esc_html( $label ) );
+	}
+	echo '</ul>';
+}
