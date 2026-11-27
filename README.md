@@ -24,10 +24,17 @@ Keep brand values out of templates and CSS: colors and fonts come from `theme.js
 |---|---|---|
 | Palette values | `theme.json` | Parent keeps the slugs; child overrides the colors |
 | Fonts | `theme.json` | Same: child can swap families |
-| Homepage content | `front-page.php` | Copy is counseling-licensure specific; Dual Credits gets its own |
+| Homepage content | `patterns/home.php` (and the Home page itself) | Copy is counseling-licensure specific; Dual Credits gets its own |
 | Footer legal text | `footer.php` | Names CounselorCredits and Partner University; make it a child override or a filter |
 | Menu fallback links | `functions.php` | Anchors point at homepage sections; child-specific |
-| Placeholder text | `front-page.php` | `[VERIFY…]`, `[PRICE PER CREDIT]`, `[REFUND POLICY]`: fill in, don't carry over |
+| Placeholder text | Home page content, `patterns/home.php` | `[VERIFY…]`, `[PRICE PER CREDIT]`, `[REFUND POLICY]`: fill in, don't carry over |
+
+## Homepage
+
+- A Page ("Home") set as the static homepage, with the **Homepage** pattern (`patterns/home.php`) inserted. `front-page.php` only wraps it.
+- State dropdown and cards are shortcodes: `[credits_state_select]`, `[credits_state_cards]` (`inc/states.php`).
+- The progress bar in the sample report is a Custom HTML block; change its `width` there.
+- Page text lives in the database, not git.
 
 ## State pages
 
@@ -38,7 +45,7 @@ Keep brand values out of templates and CSS: colors and fonts come from `theme.js
 - Tick a **Top-up status** on each state. Without one, it is linked only if its name is already in the planned list, and it won't appear on the `/states/` index.
 - The patterns hardcode `/states/` and CounselorCredits copy ("Partner University", legal line). Content is per-site.
 
-- The state editor loads `style.css` (see the `block_editor_settings_all` filter in `inc/states.php`). Keep state-only rules written as `.state-page <selector>` (with the space), because that prefix is stripped for the editor.
+- The state editor loads `style.css` (see the `block_editor_settings_all` filter in `inc/editor.php`). Keep block-page rules written as `.block-page <selector>` (with the space), because that prefix is stripped for the editor.
 - Checkpoint: after 3 to 5 states, decide whether block patterns still work or whether fields (ACF Pro) + a PHP template would be better.
 
 ## Maybe move later

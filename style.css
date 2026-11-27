@@ -1,7 +1,7 @@
 /*
 Theme Name: Credits
 Description: Shared parent theme for the Counselor Credits and Dual Credits WooCommerce sites. Brand values (colors, fonts) live in theme.json.
-Version: 0.3.1
+Version: 0.4.0
 Requires at least: 6.5
 Requires PHP: 8.0
 Text Domain: credits
@@ -114,7 +114,7 @@ a:hover { color: var(--c-deep); }
 .gap-report__areas { display: flex; flex-direction: column; gap: 8px; }
 .gap-report__areas-label { font-size: 15px; font-weight: 600; }
 .chips { display: flex; flex-wrap: wrap; gap: 8px; }
-.chip { background: var(--c-warn-bg); border: 1px solid var(--c-warn-line); color: var(--c-warn-text); border-radius: 999px; padding: 6px 12px; font-size: 14px; }
+.chip, .chips li { background: var(--c-warn-bg); border: 1px solid var(--c-warn-line); color: var(--c-warn-text); border-radius: 999px; padding: 6px 12px; font-size: 14px; }
 .gap-report__foot { border-top: 1px solid var(--c-line); padding-top: 16px; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
 .gap-report__plan { font-size: 16px; font-weight: 700; }
 .gap-report__partner { font-size: 15px; color: var(--c-teal); font-weight: 600; }
@@ -194,13 +194,13 @@ a.card:hover { color: var(--c-ink); border-color: var(--c-teal); }
 .faq__a { font-size: 16px; line-height: 1.6; color: var(--c-muted); }
 
 /* ==========================================================================
-   State pages (blocks built from the "State page" pattern)
+   Block-built pages (homepage and state pages, from the patterns)
    ========================================================================== */
 /* Neutralize editor block margins/list styling; layout is driven by the classes below. */
-.state-page :is(h1, h2, h3, p, ul, ol, figure, details) { margin: 0; }
-.state-page :is(ul, ol) { padding: 0; list-style: none; }
+.block-page :is(h1, h2, h3, p, ul, ol, figure, details) { margin: 0; }
+.block-page :is(ul, ol) { padding: 0; list-style: none; }
 /* Block margins only: horizontal "auto" must survive so .container stays centered. */
-.state-page .wp-block-group { margin-block: 0; }
+.block-page .wp-block-group { margin-block: 0; }
 
 .hero__stack { display: flex; flex-direction: column; gap: 32px; }
 .hero__row { display: flex; flex-wrap: wrap; gap: 56px; align-items: center; }
@@ -209,12 +209,12 @@ a.card:hover { color: var(--c-ink); border-color: var(--c-teal); }
 .section-lede { font-size: 18px; line-height: 1.6; color: var(--c-muted); }
 
 /* Buttons from core/button, styled like .btn */
-.state-page .wp-block-buttons { display: flex; flex-wrap: wrap; gap: 12px; }
-.state-page .wp-block-button__link { display: inline-block; background: var(--c-accent); color: var(--c-ink); font-weight: 600; font-size: 17px; padding: 16px 24px; border-radius: 10px; border: 0; text-decoration: none; }
-.state-page .wp-block-button__link:hover { color: var(--c-ink); filter: brightness(.95); }
-.state-page .is-style-outline .wp-block-button__link { background: transparent; border: 1.5px solid var(--c-mist-soft); color: var(--c-cream); padding: 15px 22px; }
-.state-page .is-style-outline .wp-block-button__link:hover { color: var(--c-cream); background: rgb(255 255 255 / .08); filter: none; }
-.state-page .cta-band .wp-block-button__link { font-size: 18px; padding: 18px 28px; }
+.block-page .wp-block-buttons { display: flex; flex-wrap: wrap; gap: 12px; }
+.block-page .wp-block-button__link { display: inline-block; background: var(--c-accent); color: var(--c-ink); font-weight: 600; font-size: 17px; padding: 16px 24px; border-radius: 10px; border: 0; text-decoration: none; }
+.block-page .wp-block-button__link:hover { color: var(--c-ink); filter: brightness(.95); }
+.block-page .is-style-outline .wp-block-button__link { background: transparent; border: 1.5px solid var(--c-mist-soft); color: var(--c-cream); padding: 15px 22px; }
+.block-page .is-style-outline .wp-block-button__link:hover { color: var(--c-cream); background: rgb(255 255 255 / .08); filter: none; }
+.block-page .cta-band .wp-block-button__link { font-size: 18px; padding: 18px 28px; }
 
 /* "At a glance" card */
 .glance { flex: 1 1 380px; min-width: 0; background: var(--c-cream); color: var(--c-ink); border-radius: 16px; padding: 28px; display: flex; flex-direction: column; gap: 16px; }
@@ -260,17 +260,27 @@ a.card:hover { color: var(--c-ink); border-color: var(--c-teal); }
 .steps > .wp-block-group { margin: 0; }
 
 /* FAQ as accordion (core/details) */
-.state-page details.faq__item { display: block; }
+.block-page details.faq__item { display: block; }
 .faq__item summary { cursor: pointer; font-family: var(--f-heading); font-size: 19px; font-weight: 700; list-style-position: outside; }
 .faq__item p { margin-top: 10px; font-size: 16px; line-height: 1.6; color: var(--c-muted); }
 
 /* Section containers: full width, and they (not the outer section) space their children.
    In patterns .stack-* sits on the outer section, where flex + auto margins would shrink the container. */
-.state-page .section > .container { width: 100%; display: flex; flex-direction: column; gap: 28px; }
-.state-page .stack-32 > .container { gap: 32px; }
+.block-page .section > .container { width: 100%; display: flex; flex-direction: column; gap: 28px; }
+.block-page .stack-32 > .container { gap: 32px; }
+
+/* Homepage blocks */
+.gap-report__label { font-weight: 600; }
+.gap-report__value { color: var(--c-muted); }
+
+/* Whole card / banner is clickable through its one link. `#main` keeps the overlay out of the editor. */
+.card, .alert-link { position: relative; }
+.card__cta a, .alert-link__cta a { color: inherit; text-decoration: none; }
+#main .card__cta a::after, #main .alert-link__cta a::after { content: ""; position: absolute; inset: 0; }
+#main .card:hover { border-color: var(--c-teal); }
 
 /* Sources / legal */
-.state-page .state-legal > .container { gap: 8px; }
+.block-page .state-legal > .container { gap: 8px; }
 
 /* Generic content (index.php fallback) */
 .site-main { padding-block: 48px; }

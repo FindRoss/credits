@@ -200,24 +200,31 @@ add_action( 'wp_enqueue_scripts', function () {
 	}
 } );
 
-/**
- * Style the block editor like the live page, for state posts only.
- *
- * Reuses style.css. The editor has no `.state-page` wrapper, so that prefix is
- * stripped (WordPress scopes these rules to the editor canvas itself).
- */
-add_filter( 'block_editor_settings_all', function ( $settings, $context ) {
-	if ( empty( $context->post ) || 'state' !== $context->post->post_type ) {
-		return $settings;
+/** [credits_state_select]: the "Choose your state" dropdown. */
+add_shortcode( 'credits_state_select', function () {
+	$options = sprintf( '<option value="">%s</option>', esc_html__( 'Select a state', 'credits' ) );
+	foreach ( credits_state_options( true ) as $option ) {
+		$options .= sprintf( '<option value="%s">%s</option>', esc_url( $option['url'] ), esc_html( $option['name'] ) );
 	}
 
-	$css = file_get_contents( get_template_directory() . '/style.css' );
-	$css = str_replace( '.state-page ', '', $css );
+	return sprintf(
+		'<div class="field"><label for="state-select">%s</label><select id="state-select" data-state-select>%s</select></div>',
+		esc_html__( 'Choose your state', 'credits' ),
+		$options // Escaped above.
+	);
+} );
 
-	// Editor only: sections run full width (theme.json would cap top-level blocks at 720px).
-	$css .= '.is-root-container > .wp-block { max-width: none; margin-block: 0; }';
+/** [credits_state_cards]: states grouped by top-up status, linked where a page exists. */
+add_shortcode( 'credits_state_cards', function () {
+	$cards = '';
+	foreach ( credits_status_groups( true ) as $group ) {
+		$cards .= sprintf(
+			'<div class="status-card %s"><h3 class="status-card__title">%s</h3><p class="status-card__list">%s</p></div>',
+			esc_attr( $group['modifier'] ),
+			esc_html( $group['title'] ),
+			credits_state_links( $group['items'] ) // Escaped in helper.
+		);
+	}
 
-	$settings['styles'][] = [ 'css' => $css ];
-
-	return $settings;
-}, 10, 2 );
+	return '<div class="card-row">' . $cards . '</div>';
+} );
