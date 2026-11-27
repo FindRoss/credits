@@ -269,6 +269,15 @@ a.card:hover { color: var(--c-ink); border-color: var(--c-teal); }
 .block-page .section > .container { width: 100%; display: flex; flex-direction: column; gap: 28px; }
 .block-page .stack-32 > .container { gap: 32px; }
 
+/* /states/ index */
+.hero__stack--tight { gap: 24px; }
+.state-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 160px), 1fr)); gap: 10px; }
+.state-grid li { display: flex; }
+.state-grid__item { flex: 1; display: flex; align-items: center; min-height: 52px; padding: 12px 16px; background: var(--c-white); border: 1px solid var(--c-line); border-radius: 10px; font-size: 16px; font-weight: 600; text-decoration: none; }
+a.state-grid__item:hover { border-color: var(--c-teal); }
+/* No page yet: muted, not clickable. */
+span.state-grid__item { background: transparent; color: var(--c-muted-soft); font-weight: 400; }
+
 /* Homepage blocks */
 .gap-report__label { font-weight: 600; }
 .gap-report__value { color: var(--c-muted); }

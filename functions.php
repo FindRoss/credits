@@ -75,26 +75,26 @@ function credits_logo() {
  */
 function credits_primary_menu_fallback() {
 	$items = [
-		'#situations' => __( 'Your situation', 'credits' ),
-		'#states'     => __( 'State rules', 'credits' ),
-		'#partner'    => __( 'Courses', 'credits' ),
-		'#how'        => __( 'How it works', 'credits' ),
+		__( 'Your situation', 'credits' ) => home_url( '/#situations' ),
+		__( 'State rules', 'credits' )    => get_post_type_archive_link( 'state' ),
+		__( 'Courses', 'credits' )        => home_url( '/#partner' ),
+		__( 'How it works', 'credits' )   => home_url( '/#how' ),
 	];
 	echo '<ul>';
-	foreach ( $items as $anchor => $label ) {
-		printf( '<li><a href="%s">%s</a></li>', esc_url( home_url( '/' . $anchor ) ), esc_html( $label ) );
+	foreach ( $items as $label => $url ) {
+		printf( '<li><a href="%s">%s</a></li>', esc_url( $url ), esc_html( $label ) );
 	}
 	echo '</ul>';
 }
 
 function credits_footer_menu_fallback() {
 	$items = [
-		'#states'  => __( 'All states', 'credits' ),
-		'#partner' => __( 'Courses', 'credits' ),
+		__( 'All states', 'credits' ) => get_post_type_archive_link( 'state' ),
+		__( 'Courses', 'credits' )    => home_url( '/#partner' ),
 	];
 	echo '<ul>';
-	foreach ( $items as $anchor => $label ) {
-		printf( '<li><a href="%s">%s</a></li>', esc_url( home_url( '/' . $anchor ) ), esc_html( $label ) );
+	foreach ( $items as $label => $url ) {
+		printf( '<li><a href="%s">%s</a></li>', esc_url( $url ), esc_html( $label ) );
 	}
 	echo '</ul>';
 }

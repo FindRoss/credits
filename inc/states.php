@@ -228,3 +228,33 @@ add_shortcode( 'credits_state_cards', function () {
 
 	return '<div class="card-row">' . $cards . '</div>';
 } );
+
+/**
+ * All 50 states for the /states/ index, linked where a page is published.
+ * Pages are matched by title, ignoring case. A published page whose title is not
+ * one of the 50 (e.g. District of Columbia) is added too, so it is never orphaned.
+ */
+function credits_state_directory() {
+	$names = [
+		'Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado',
+		'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho',
+		'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana',
+		'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi',
+		'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey',
+		'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Ohio', 'Oklahoma',
+		'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee',
+		'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia',
+		'Wisconsin', 'Wyoming',
+	];
+
+	$directory = [];
+	foreach ( $names as $name ) {
+		$directory[ strtolower( $name ) ] = [ 'name' => $name, 'url' => '' ];
+	}
+	foreach ( credits_state_options() as $page ) {
+		$directory[ strtolower( trim( $page['name'] ) ) ] = $page;
+	}
+	ksort( $directory );
+
+	return array_values( $directory );
+}

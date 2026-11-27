@@ -40,9 +40,9 @@ Keep brand values out of templates and CSS: colors and fonts come from `theme.js
 
 - `state` post type + `topup_status` taxonomy (Top-ups allowed / Allowed with conditions / Degree must already qualify): `inc/states.php`.
 - Each state's body is built in the block editor from a pattern in `patterns/`: **State page: Illinois** (filled in) and **State page (blank template)** (placeholders). Insert one when creating a new State.
-- `single-state.php` just wraps the content; `archive-state.php` is the `/states/` index.
+- `single-state.php` just wraps the content; `archive-state.php` is the `/states/` index: all 50 states (`credits_state_directory()`), linked where a published page has the same title.
 - Homepage state cards: the planned list in `credits_fallback_states()`, with a link wherever a published state page has the same title. A ticked status moves a state to that group. The dropdown lists published states only (placeholder names until one exists).
-- Tick a **Top-up status** on each state. Without one, it is linked only if its name is already in the planned list, and it won't appear on the `/states/` index.
+- Tick a **Top-up status** on each state. Without one, it is linked only if its name is already in the planned list.
 - The patterns hardcode `/states/` and CounselorCredits copy ("Partner University", legal line). Content is per-site.
 
 - The state editor loads `style.css` (see the `block_editor_settings_all` filter in `inc/editor.php`). Keep block-page rules written as `.block-page <selector>` (with the space), because that prefix is stripped for the editor.

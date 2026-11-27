@@ -1,35 +1,32 @@
 <?php
 /**
- * "All states" index (/states/): published states grouped by top-up status.
+ * "All states" index (/states/): all 50 states, linked where a page is published.
  */
 defined( 'ABSPATH' ) || exit;
 get_header();
-
-$groups = array_filter( credits_status_groups(), fn( $g ) => ! empty( $g['items'] ) );
 ?>
 <main id="main">
 	<section class="hero">
-		<div class="container hero__stack">
+		<div class="container hero__stack hero__stack--tight">
 			<p class="eyebrow eyebrow--accent"><?php esc_html_e( 'State rules', 'credits' ); ?></p>
 			<h1 class="hero__title"><?php esc_html_e( 'Counseling license rules by state', 'credits' ); ?></h1>
-			<p class="hero__lede"><?php esc_html_e( 'Find out whether your state lets you top up a shorter degree with graduate courses.', 'credits' ); ?></p>
+			<p class="hero__lede"><?php esc_html_e( 'Choose your state to see its rules.', 'credits' ); ?></p>
 		</div>
 	</section>
 
-	<section class="section">
+	<section class="section" aria-label="<?php esc_attr_e( 'All states', 'credits' ); ?>">
 		<div class="container">
-			<?php if ( $groups ) : ?>
-				<div class="card-row">
-					<?php foreach ( $groups as $group ) : ?>
-						<div class="status-card <?php echo esc_attr( $group['modifier'] ); ?>">
-							<h2 class="status-card__title"><?php echo esc_html( $group['title'] ); ?></h2>
-							<p class="status-card__list"><?php echo credits_state_links( $group['items'] ); // Escaped in helper. ?></p>
-						</div>
-					<?php endforeach; ?>
-				</div>
-			<?php else : ?>
-				<p><?php esc_html_e( 'State pages are coming soon.', 'credits' ); ?></p>
-			<?php endif; ?>
+			<ul class="state-grid">
+				<?php foreach ( credits_state_directory() as $state ) : ?>
+					<li>
+						<?php if ( $state['url'] ) : ?>
+							<a class="state-grid__item" href="<?php echo esc_url( $state['url'] ); ?>"><?php echo esc_html( $state['name'] ); ?></a>
+						<?php else : ?>
+							<span class="state-grid__item"><?php echo esc_html( $state['name'] ); ?></span>
+						<?php endif; ?>
+					</li>
+				<?php endforeach; ?>
+			</ul>
 		</div>
 	</section>
 </main>
