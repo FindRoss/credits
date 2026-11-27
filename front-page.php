@@ -125,31 +125,23 @@ get_header();
 				</div>
 				<div class="field">
 					<label for="state-select">Choose your state</label>
-					<select id="state-select">
-						<option>Illinois</option>
-						<option>Texas</option>
-						<option>Minnesota</option>
-						<option>Tennessee</option>
-						<option>Indiana</option>
-						<option>Florida</option>
+					<select id="state-select" data-state-select>
+						<option value=""><?php esc_html_e( 'Select a state', 'credits' ); ?></option>
+						<?php foreach ( credits_state_options( true ) as $option ) : ?>
+							<option value="<?php echo esc_url( $option['url'] ); ?>"><?php echo esc_html( $option['name'] ); ?></option>
+						<?php endforeach; ?>
 					</select>
 				</div>
 			</div>
 			<div class="card-row">
-				<div class="status-card">
-					<h3 class="status-card__title">Top-ups allowed</h3>
-					<p class="status-card__list"><a href="#">Illinois</a> · Texas · Minnesota · Tennessee · Indiana · Maryland · Oklahoma · Arizona · Oregon · Kentucky · Connecticut</p>
-				</div>
-				<div class="status-card status-card--caution">
-					<h3 class="status-card__title">Allowed with conditions</h3>
-					<p class="status-card__list">California · New York · Pennsylvania · Massachusetts · Michigan · Colorado</p>
-				</div>
-				<div class="status-card status-card--stop">
-					<h3 class="status-card__title">Degree must already qualify</h3>
-					<p class="status-card__list">Florida · North Carolina · Ohio · Alabama</p>
-				</div>
+				<?php foreach ( credits_status_groups( true ) as $group ) : ?>
+					<div class="status-card <?php echo esc_attr( $group['modifier'] ); ?>">
+						<h3 class="status-card__title"><?php echo esc_html( $group['title'] ); ?></h3>
+						<p class="status-card__list"><?php echo credits_state_links( $group['items'] ); // Escaped in helper. ?></p>
+					</div>
+				<?php endforeach; ?>
 			</div>
-			<p class="fineprint">[VERIFY EACH STATE WITH ITS LICENSING BOARD BEFORE LAUNCH] · <a href="#">See all 50 states</a></p>
+			<p class="fineprint">[VERIFY EACH STATE WITH ITS LICENSING BOARD BEFORE LAUNCH] · <a href="<?php echo esc_url( get_post_type_archive_link( 'state' ) ); ?>">See all 50 states</a></p>
 		</div>
 	</section>
 

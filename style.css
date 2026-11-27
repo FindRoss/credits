@@ -1,7 +1,7 @@
 /*
 Theme Name: Credits
 Description: Shared parent theme for the Counselor Credits and Dual Credits WooCommerce sites. Brand values (colors, fonts) live in theme.json.
-Version: 0.2.0
+Version: 0.3.1
 Requires at least: 6.5
 Requires PHP: 8.0
 Text Domain: credits
@@ -192,6 +192,85 @@ a.card:hover { color: var(--c-ink); border-color: var(--c-teal); }
 .faq__item:last-child { border-bottom: 1px solid var(--c-line); }
 .faq__q { font-size: 19px; font-weight: 700; }
 .faq__a { font-size: 16px; line-height: 1.6; color: var(--c-muted); }
+
+/* ==========================================================================
+   State pages (blocks built from the "State page" pattern)
+   ========================================================================== */
+/* Neutralize editor block margins/list styling; layout is driven by the classes below. */
+.state-page :is(h1, h2, h3, p, ul, ol, figure, details) { margin: 0; }
+.state-page :is(ul, ol) { padding: 0; list-style: none; }
+/* Block margins only: horizontal "auto" must survive so .container stays centered. */
+.state-page .wp-block-group { margin-block: 0; }
+
+.hero__stack { display: flex; flex-direction: column; gap: 32px; }
+.hero__row { display: flex; flex-wrap: wrap; gap: 56px; align-items: center; }
+.crumbs { font-size: 14px; color: var(--c-mist); }
+.crumbs a { color: var(--c-mist); }
+.section-lede { font-size: 18px; line-height: 1.6; color: var(--c-muted); }
+
+/* Buttons from core/button, styled like .btn */
+.state-page .wp-block-buttons { display: flex; flex-wrap: wrap; gap: 12px; }
+.state-page .wp-block-button__link { display: inline-block; background: var(--c-accent); color: var(--c-ink); font-weight: 600; font-size: 17px; padding: 16px 24px; border-radius: 10px; border: 0; text-decoration: none; }
+.state-page .wp-block-button__link:hover { color: var(--c-ink); filter: brightness(.95); }
+.state-page .is-style-outline .wp-block-button__link { background: transparent; border: 1.5px solid var(--c-mist-soft); color: var(--c-cream); padding: 15px 22px; }
+.state-page .is-style-outline .wp-block-button__link:hover { color: var(--c-cream); background: rgb(255 255 255 / .08); filter: none; }
+.state-page .cta-band .wp-block-button__link { font-size: 18px; padding: 18px 28px; }
+
+/* "At a glance" card */
+.glance { flex: 1 1 380px; min-width: 0; background: var(--c-cream); color: var(--c-ink); border-radius: 16px; padding: 28px; display: flex; flex-direction: column; gap: 16px; }
+.glance__title { font-size: 20px; font-weight: 700; }
+.glance__row { display: flex; align-items: baseline; gap: 16px; padding-top: 16px; border-top: 1px solid var(--c-line); }
+.glance__num { font-family: var(--f-heading); font-size: 32px; font-weight: 700; line-height: 1; color: var(--c-teal); min-width: 76px; }
+.glance__text { font-size: 15px; line-height: 1.5; color: var(--c-muted); }
+
+/* Key rule */
+.rule { display: flex; flex-wrap: wrap; gap: 40px; align-items: flex-start; }
+.rule__intro { flex: 1 1 360px; min-width: 0; display: flex; flex-direction: column; gap: 12px; }
+.rule__text { font-size: 18px; line-height: 1.6; color: var(--c-muted); }
+.rule__list { flex: 1 1 440px; min-width: 0; background: var(--c-white); border: 1px solid var(--c-line); border-radius: 14px; padding: 8px 28px; }
+.rule__list li { position: relative; padding: 16px 0 16px 32px; border-bottom: 1px solid var(--c-line-soft); font-size: 16px; line-height: 1.55; }
+.rule__list li:last-child { border-bottom: 0; }
+.rule__list li::before { content: "✓"; position: absolute; left: 0; top: 16px; font-weight: 700; color: var(--c-ok); }
+
+/* Callout */
+.callout { background: var(--c-sand); border: 1px solid var(--c-sand-line); border-radius: 12px; padding: 18px 24px; display: flex; flex-wrap: wrap; gap: 4px 16px; align-items: baseline; }
+.callout__title { font-size: 17px; font-weight: 700; }
+.callout__text { font-size: 16px; color: var(--c-muted); }
+
+/* License comparison table */
+.state-table table { width: 100%; border-collapse: collapse; background: var(--c-white); border: 0; }
+.state-table :is(th, td) { padding: 14px 18px; text-align: left; vertical-align: top; border: 0; border-bottom: 1px solid var(--c-line); font-size: 16px; }
+.state-table thead th { background: var(--c-deep); color: var(--c-cream); font-weight: 600; border-bottom: 0; }
+.state-table tbody tr:last-child td { border-bottom: 0; }
+.state-table .wp-block-table, .state-table { overflow-x: auto; }
+
+/* Core areas */
+.core-areas { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 10px; }
+.core-areas li { background: var(--c-white); border: 1px solid var(--c-line); border-radius: 10px; padding: 12px 16px; font-size: 15px; }
+.core-areas li.is-highlight { background: var(--c-warn-bg); border-color: var(--c-warn-line); color: var(--c-warn-text); font-weight: 600; }
+
+/* Sample plan extras (rest reuses .partner / .course-list) */
+.partner__brand-text { display: flex; flex-direction: column; gap: 2px; }
+.partner__name { font-size: 16px; font-weight: 600; }
+.partner__meta { font-size: 14px; color: var(--c-muted-soft); }
+.course-list__main { display: flex; flex-direction: column; gap: 2px; }
+.course-list__sub { font-size: 14px; color: var(--c-muted-soft); }
+
+/* Steps built from groups behave like the homepage list */
+.steps > .wp-block-group { margin: 0; }
+
+/* FAQ as accordion (core/details) */
+.state-page details.faq__item { display: block; }
+.faq__item summary { cursor: pointer; font-family: var(--f-heading); font-size: 19px; font-weight: 700; list-style-position: outside; }
+.faq__item p { margin-top: 10px; font-size: 16px; line-height: 1.6; color: var(--c-muted); }
+
+/* Section containers: full width, and they (not the outer section) space their children.
+   In patterns .stack-* sits on the outer section, where flex + auto margins would shrink the container. */
+.state-page .section > .container { width: 100%; display: flex; flex-direction: column; gap: 28px; }
+.state-page .stack-32 > .container { gap: 32px; }
+
+/* Sources / legal */
+.state-page .state-legal > .container { gap: 8px; }
 
 /* Generic content (index.php fallback) */
 .site-main { padding-block: 48px; }
