@@ -10,6 +10,7 @@ defined( 'ABSPATH' ) || exit;
 
 require_once get_template_directory() . '/inc/states.php';
 require_once get_template_directory() . '/inc/editor.php';
+require_once get_template_directory() . '/inc/guides.php';
 
 add_action( 'after_setup_theme', function () {
 	add_theme_support( 'title-tag' );
@@ -79,6 +80,7 @@ function credits_primary_menu_fallback() {
 		__( 'State rules', 'credits' )    => get_post_type_archive_link( 'state' ),
 		__( 'Courses', 'credits' )        => home_url( '/#partner' ),
 		__( 'How it works', 'credits' )   => home_url( '/#how' ),
+		__( 'Guides', 'credits' )         => credits_guides_url(),
 	];
 	echo '<ul>';
 	foreach ( $items as $label => $url ) {

@@ -26,10 +26,10 @@
 <!-- wp:buttons {"className":"hero__actions"} -->
 <div class="wp-block-buttons hero__actions">
 <!-- wp:button -->
-<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="#check">Start your free 2-minute check</a></div>
+<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="#check">Check my transcript free</a></div>
 <!-- /wp:button -->
 <!-- wp:button {"className":"is-style-outline"} -->
-<div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button" href="#states">See your state’s rules</a></div>
+<div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button" href="/states/illinois/#plan">See a sample course plan</a></div>
 <!-- /wp:button -->
 </div>
 <!-- /wp:buttons -->

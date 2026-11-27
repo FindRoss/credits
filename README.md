@@ -36,6 +36,13 @@ Keep brand values out of templates and CSS: colors and fonts come from `theme.js
 - The progress bar in the sample report is a Custom HTML block; change its `width` there.
 - Page text lives in the database, not git.
 
+## Guides
+
+- Guides are ordinary posts. Setup: a Page "Guides" set as the Posts page, and permalinks `/guides/%postname%/`.
+- Templates: `home.php` (list), `single.php`, `archive.php` (categories), `template-parts/post-list.php`; helpers in `inc/guides.php`.
+- A paragraph can be given the **Note box** style in the editor's Styles panel.
+- Hero wording in `home.php` and the post CTA in `single.php` are site-specific (child-bound).
+
 ## State pages
 
 - `state` post type + `topup_status` taxonomy (Top-ups allowed / Allowed with conditions / Degree must already qualify): `inc/states.php`.

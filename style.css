@@ -1,7 +1,7 @@
 /*
 Theme Name: Credits
 Description: Shared parent theme for the Counselor Credits and Dual Credits WooCommerce sites. Brand values (colors, fonts) live in theme.json.
-Version: 0.4.0
+Version: 0.4.2
 Requires at least: 6.5
 Requires PHP: 8.0
 Text Domain: credits
@@ -228,6 +228,8 @@ a.card:hover { color: var(--c-ink); border-color: var(--c-teal); }
 .rule__intro { flex: 1 1 360px; min-width: 0; display: flex; flex-direction: column; gap: 12px; }
 .rule__text { font-size: 18px; line-height: 1.6; color: var(--c-muted); }
 .rule__list { flex: 1 1 440px; min-width: 0; background: var(--c-white); border: 1px solid var(--c-line); border-radius: 14px; padding: 8px 28px; }
+/* Outweighs the block-page list reset above, which would otherwise zero this padding. */
+.block-page .rule__list { padding: 8px 28px; }
 .rule__list li { position: relative; padding: 16px 0 16px 32px; border-bottom: 1px solid var(--c-line-soft); font-size: 16px; line-height: 1.55; }
 .rule__list li:last-child { border-bottom: 0; }
 .rule__list li::before { content: "✓"; position: absolute; left: 0; top: 16px; font-weight: 700; color: var(--c-ok); }
@@ -278,6 +280,52 @@ a.state-grid__item:hover { border-color: var(--c-teal); }
 /* No page yet: muted, not clickable. */
 span.state-grid__item { background: transparent; color: var(--c-muted-soft); font-weight: 400; }
 
+/* ==========================================================================
+   Guides: post list and single post
+   ========================================================================== */
+.container--narrow { max-width: 760px; }
+/* Single posts get a wider column; hero, body and CTA stay aligned. */
+.single-post .container--narrow { max-width: 880px; }
+.eyebrow a { color: inherit; }
+.section--posts { padding-top: 56px; }
+.post-list { display: flex; flex-direction: column; gap: 20px; }
+.post-card { background: var(--c-white); border: 1px solid var(--c-line); border-radius: 14px; padding: 28px; display: flex; flex-direction: column; gap: 12px; }
+.post-card__meta { font-size: 14px; color: var(--c-muted-soft); }
+.post-card__title { font-size: 24px; line-height: 1.25; font-weight: 700; }
+.post-card__title a { color: var(--c-ink); text-decoration: none; }
+.post-card__excerpt { font-size: 16px; line-height: 1.6; color: var(--c-muted); }
+.post-card__more { align-self: flex-start; font-size: 15px; font-weight: 600; padding: 10px 0; }
+.post-pages { display: flex; justify-content: space-between; gap: 16px; padding-top: 12px; font-size: 15px; font-weight: 600; }
+.post-pages span:last-child { margin-left: auto; }
+
+.hero--post { padding: 40px 0 64px; }
+.post-hero { display: flex; flex-direction: column; gap: 20px; }
+.post-hero__title { font-size: clamp(32px, 4.5vw, 48px); line-height: 1.1; font-weight: 700; color: var(--c-cream); }
+.post-hero__meta { font-size: 15px; color: var(--c-mist-soft); }
+
+.post { padding-top: 56px; }
+.post-body { font-size: 18px; line-height: 1.7; color: var(--c-muted); }
+.post-body > * { margin: 0 0 16px; }
+/* A bit more room between a heading and the text under it. */
+.post-body > :is(h2, h3, h4) { margin-bottom: 24px; }
+.post-body > p:first-child { font-size: 20px; color: var(--c-ink); }
+/* Links stay underlined: teal against muted text is not distinct enough on color alone. */
+.post-body a { text-decoration: underline; }
+.post-body :is(h2, h3, strong) { color: var(--c-ink); }
+.post-body h2 { margin-top: 40px; font-size: 28px; line-height: 1.2; }
+.post-body h3 { margin-top: 32px; font-size: 21px; line-height: 1.3; }
+.post-body :is(ul, ol) { padding-left: 24px; }
+.post-body li + li { margin-top: 8px; }
+.post-body .is-style-note { background: var(--c-sand); border: 1px solid var(--c-sand-line); border-radius: 12px; padding: 18px 24px; font-size: 16px; line-height: 1.6; }
+.post-back { border-top: 1px solid var(--c-line); padding-top: 20px; font-size: 15px; font-weight: 600; }
+.post-back a { display: inline-block; padding: 10px 0; }
+
+.post-cta { padding-top: 48px; }
+.cta-band--compact { padding: 32px; gap: 24px; }
+.cta-band--compact .cta-band__copy { flex-basis: 280px; gap: 8px; }
+.cta-band--compact .cta-band__title { font-size: 26px; line-height: 1.2; }
+.cta-band--compact .cta-band__text { font-size: 16px; }
+
 /* Homepage blocks */
 .gap-report__label { font-weight: 600; }
 .gap-report__value { color: var(--c-muted); }
@@ -293,6 +341,10 @@ span.state-grid__item { background: transparent; color: var(--c-muted-soft); fon
 
 /* Generic content (index.php fallback) */
 .site-main { padding-block: 48px; }
+/* Ordinary pages: normal spacing between content blocks (the base reset zeroes p and headings). */
+.site-main article > * { margin: 0 0 16px; }
+.site-main article > :is(h1, h2, h3, h4) { margin-bottom: 24px; }
+.site-main article > * + :is(h2, h3, h4) { margin-top: 32px; }
 
 @media (max-width: 640px) {
 	.container { padding-inline: 20px; }
